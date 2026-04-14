@@ -16,23 +16,17 @@
             --border-color: #cbd5e1;
             --accent: #059669;
             --font-ui: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            --font-doc: "Georgia", "Times New Roman", serif;
             --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             --radius: 8px;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             font-family: var(--font-ui);
             background-color: var(--bg-page);
             color: var(--text-dark);
             line-height: 1.5;
-            -webkit-font-smoothing: antialiased;
         }
 
         /* --- Header --- */
@@ -44,24 +38,15 @@
             border-bottom: 4px solid var(--primary);
         }
 
-        header h1 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-
-        header p {
-            font-size: 0.9rem;
-            color: #94a3b8;
-            margin-top: 0.25rem;
-        }
+        header h1 { font-size: 1.5rem; font-weight: 600; }
+        header p { font-size: 0.9rem; color: #94a3b8; margin-top: 0.25rem; }
 
         /* --- Layout Container --- */
         .container {
             display: flex;
             flex-direction: row;
             gap: 1.5rem;
-            max-width: 1400px;
+            max-width: 1500px;
             margin: 2rem auto;
             padding: 0 1.5rem;
             height: calc(100vh - 150px);
@@ -69,7 +54,7 @@
 
         /* --- Sidebar Controls --- */
         .sidebar {
-            flex: 0 0 400px;
+            flex: 0 0 420px;
             background: var(--bg-panel);
             border: 1px solid var(--border-color);
             border-radius: var(--radius);
@@ -81,12 +66,7 @@
             gap: 1.5rem;
         }
 
-        .section {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
+        .section { display: flex; flex-direction: column; gap: 1rem; }
         .section-title {
             font-size: 1.05rem;
             font-weight: 600;
@@ -95,221 +75,117 @@
             padding-bottom: 0.5rem;
         }
 
-        .form-row {
-            display: flex;
-            gap: 1rem;
-        }
+        .form-row { display: flex; gap: 1rem; }
+        .form-group { flex: 1; display: flex; flex-direction: column; gap: 0.4rem; }
 
-        .form-group {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 0.4rem;
-        }
+        label { font-size: 0.8rem; font-weight: 600; color: var(--text-light); text-transform: uppercase; }
 
-        label {
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--text-light);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        input[type="text"], select {
+        input[type="text"], select, textarea.input-area {
             width: 100%;
             padding: 0.6rem 0.75rem;
             font-family: inherit;
             font-size: 0.95rem;
-            color: var(--text-dark);
-            background-color: var(--bg-panel);
             border: 1px solid var(--border-color);
             border-radius: 4px;
-            transition: border-color 0.2s, box-shadow 0.2s;
+            transition: border-color 0.2s;
         }
 
-        input[type="text"]:focus, select:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
+        input[type="text"]:focus, select:focus, textarea.input-area:focus {
+            outline: none; border-color: var(--primary);
         }
+        
+        textarea.input-area { resize: vertical; min-height: 60px; }
 
-        /* Custom Checkboxes */
-        .checkbox-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
+        /* Scrolled Checkbox List for 20 Items */
+        .checkbox-list { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 0.6rem; 
+            max-height: 400px; 
+            overflow-y: auto; 
+            padding-right: 10px;
+            border: 1px solid #e2e8f0;
+            padding: 10px;
+            border-radius: 6px;
+            background-color: #f8fafc;
         }
-
         .checkbox-label {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.75rem;
-            font-size: 0.95rem;
-            cursor: pointer;
-            color: var(--text-dark);
+            display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.9rem; cursor: pointer;
+            padding-bottom: 0.3rem; border-bottom: 1px dashed #cbd5e1;
         }
-
-        .checkbox-label input[type="checkbox"] {
-            margin-top: 0.2rem;
-            width: 1.1rem;
-            height: 1.1rem;
-            accent-color: var(--primary);
-            cursor: pointer;
-        }
+        .checkbox-label:last-child { border-bottom: none; }
+        .checkbox-label input { margin-top: 0.2rem; width: 1.1rem; height: 1.1rem; accent-color: var(--primary); flex-shrink: 0; }
 
         /* --- Document Preview Area --- */
         .main-content {
             flex: 1;
             display: flex;
             flex-direction: column;
-            background: var(--bg-panel);
-            border: 1px solid var(--border-color);
+            background: var(--bg-page);
             border-radius: var(--radius);
-            box-shadow: var(--shadow);
             overflow: hidden;
             min-width: 0;
         }
 
         .toolbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 1.5rem;
-            background-color: #f1f5f9;
-            border-bottom: 1px solid var(--border-color);
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 1.5rem; background-color: white;
+            border: 1px solid var(--border-color); border-radius: var(--radius) var(--radius) 0 0;
         }
 
-        .badges {
-            display: flex;
-            gap: 0.5rem;
-        }
+        .badges { display: flex; gap: 0.5rem; }
+        .badge { padding: 0.35rem 0.75rem; font-size: 0.75rem; font-weight: 700; border-radius: 20px; }
+        .badge.type { background: #dbeafe; color: #1e40af; }
+        .badge.lang { background: #e2e8f0; color: #475569; }
 
-        .badge {
-            padding: 0.35rem 0.75rem;
-            font-size: 0.75rem;
-            font-weight: 700;
-            border-radius: 20px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .badge.type { background: #dbeafe; color: #1e40af; border: 1px solid #bfdbfe; }
-        .badge.lang { background: #e2e8f0; color: #475569; border: 1px solid #cbd5e1; }
-
-        .actions {
-            display: flex;
-            gap: 0.75rem;
-        }
-
+        .actions { display: flex; gap: 0.5rem; }
         button {
-            padding: 0.6rem 1.2rem;
-            font-family: inherit;
-            font-size: 0.9rem;
-            font-weight: 600;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: all 0.2s ease;
+            padding: 0.6rem 1rem; font-weight: 600; border: none; border-radius: 4px; cursor: pointer;
+            transition: all 0.2s; display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem;
+        }
+        .btn-word { background-color: #2563eb; color: white; }
+        .btn-word:hover { background-color: #1d4ed8; }
+        .btn-pdf { background-color: #0f172a; color: white; }
+        .btn-pdf:hover { background-color: #1e293b; }
+
+        /* Paper Effect Wrapper */
+        .editor-wrapper {
+            flex: 1; overflow-y: auto; padding: 2rem;
+            border: 1px solid var(--border-color); border-top: none;
+            background-color: var(--bg-page);
         }
 
-        .btn-secondary {
-            background-color: white;
-            color: var(--text-dark);
-            border: 1px solid var(--border-color);
-        }
-
-        .btn-secondary:hover {
-            background-color: #f8fafc;
-            border-color: #94a3b8;
-        }
-
-        .btn-primary {
-            background-color: var(--primary);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background-color: var(--primary-hover);
-        }
-
-        /* Smart Content Editable Div instead of Textarea */
         div#documentEditor {
-            flex: 1;
-            width: 100%;
-            padding: 2.5rem 3rem;
-            border: none;
-            font-family: var(--font-doc);
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #000;
-            outline: none;
             background-color: white;
-            white-space: pre-wrap; /* Keeps line breaks */
-            overflow-y: auto;
+            width: 100%; max-width: 850px; margin: 0 auto;
+            padding: 3rem 4rem;
+            box-shadow: var(--shadow);
+            border-radius: 4px;
+            outline: none;
         }
 
-        div#documentEditor.rtl {
-            direction: rtl;
-            text-align: right;
-            font-size: 1.25rem;
+        /* --- Mobile Responsiveness --- */
+        @media (max-width: 1100px) {
+            .container { flex-direction: column; height: auto; }
+            .sidebar { flex: none; width: 100%; }
+            .editor-wrapper { padding: 1rem; }
+            div#documentEditor { padding: 2rem 1.5rem; }
         }
-
-        /* --- Responsive Design (Mobile Support) --- */
-        @media (max-width: 992px) {
-            .container {
-                flex-direction: column;
-                height: auto;
-                margin: 1rem auto;
-            }
-            .sidebar {
-                flex: none;
-                width: 100%;
-            }
-            .main-content {
-                height: auto;
-                min-height: 60vh;
-            }
-            div#documentEditor {
-                padding: 1.5rem;
-            }
-        }
-
         @media (max-width: 600px) {
-            .form-row {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            .actions {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-            button {
-                width: 100%;
-            }
-            .toolbar {
-                flex-direction: column;
-                gap: 1rem;
-                align-items: stretch;
-            }
-            .badges {
-                justify-content: center;
-            }
+            .actions { flex-direction: column; }
+            button { width: 100%; justify-content: center; }
+            .toolbar { flex-direction: column; gap: 1rem; }
         }
 
-        /* --- Print Styles (Perfected for iOS Safari) --- */
+        /* --- Print Styles --- */
         @media print {
-            body { background: white; margin: 0; padding: 0; }
+            body, .editor-wrapper, .container { background: white !important; margin: 0; padding: 0; }
             header, .sidebar, .toolbar { display: none !important; }
-            .container { display: block; max-width: 100%; margin: 0; padding: 0; height: auto; }
-            .main-content { border: none; box-shadow: none; height: auto; overflow: visible; display: block; }
+            .container { display: block; max-width: 100%; height: auto; }
+            .main-content { border: none; box-shadow: none; display: block; }
             div#documentEditor {
-                padding: 0;
-                width: 100%;
-                height: auto;
-                overflow: visible !important;
-                white-space: pre-wrap;
-                font-size: 12pt;
-                color: black;
+                padding: 0 !important; margin: 0 !important;
+                box-shadow: none !important; width: 100% !important; max-width: 100% !important;
             }
         }
     </style>
@@ -318,25 +194,24 @@
 
     <header>
         <h1>Healthcare Consultant OS</h1>
-        <p>Comprehensive Proposal & Agreement Generator</p>
+        <p>Advanced Proposal & Agreement Engine (20 Services)</p>
     </header>
 
     <div class="container">
-        
         <!-- Sidebar Controls -->
         <aside class="sidebar">
             <div class="section">
                 <div class="section-title">1. Document Setup</div>
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="docType">Type</label>
+                        <label>Type</label>
                         <select id="docType">
                             <option value="Proposal">Proposal</option>
                             <option value="Agreement">Legal Agreement</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="docLang">Language</label>
+                        <label>Language</label>
                         <select id="docLang">
                             <option value="English">English</option>
                             <option value="Arabic">Arabic</option>
@@ -348,15 +223,15 @@
             <div class="section">
                 <div class="section-title">2. Client Information</div>
                 <div class="form-group">
-                    <label for="clientName">Client Name</label>
+                    <label>Client / Rep Name</label>
                     <input type="text" id="clientName" value="Dr. Ahmed Al Mansoori">
                 </div>
                 <div class="form-group">
-                    <label for="facilityName">Facility Name</label>
+                    <label>Facility Name</label>
                     <input type="text" id="facilityName" value="Al Shifa Advanced Polyclinic">
                 </div>
                 <div class="form-group">
-                    <label for="facilityType">Facility Type</label>
+                    <label>Facility Type</label>
                     <select id="facilityType">
                         <option value="Clinic">Clinic / Polyclinic</option>
                         <option value="Hospital">Hospital / Medical Center</option>
@@ -365,46 +240,52 @@
             </div>
 
             <div class="section">
-                <div class="section-title">3. Scope of Services</div>
+                <div class="section-title">3. Comprehensive Scope of Services</div>
                 <div class="checkbox-list">
-                    <label class="checkbox-label">
-                        <input type="checkbox" id="srv_consult" checked> 
-                        <span>Consultations & Needs Assessment</span>
-                    </label>
-                    <label class="checkbox-label">
-                        <input type="checkbox" id="srv_train" checked> 
-                        <span>Staff & Leadership Training</span>
-                    </label>
-                    <label class="checkbox-label">
-                        <input type="checkbox" id="srv_restruct"> 
-                        <span>Operational Restructuring</span>
-                    </label>
-                    <label class="checkbox-label">
-                        <input type="checkbox" id="srv_revenue" checked> 
-                        <span>Revenue Growth Strategies</span>
-                    </label>
-                    <label class="checkbox-label">
-                        <input type="checkbox" id="srv_patient" checked> 
-                        <span>Patient Volume Increase</span>
-                    </label>
-                    <label class="checkbox-label">
-                        <input type="checkbox" id="srv_profit"> 
-                        <span>Profit Optimization & Auditing</span>
-                    </label>
+                    <!-- The Original 6 Services -->
+                    <label class="checkbox-label"><input type="checkbox" id="srv_consult" checked> <span>Consultations & Needs Assessment</span></label>
+                    <label class="checkbox-label"><input type="checkbox" id="srv_train" checked> <span>Staff & Leadership Training</span></label>
+                    <label class="checkbox-label"><input type="checkbox" id="srv_restruct"> <span>Operational Restructuring</span></label>
+                    <label class="checkbox-label"><input type="checkbox" id="srv_revenue" checked> <span>Revenue Growth Strategies</span></label>
+                    <label class="checkbox-label"><input type="checkbox" id="srv_patient" checked> <span>Patient Volume Increase</span></label>
+                    <label class="checkbox-label"><input type="checkbox" id="srv_profit"> <span>Profit Optimization & Auditing</span></label>
+                    
+                    <!-- The 4 Added Previously -->
+                    <label class="checkbox-label"><input type="checkbox" id="srv_digital"> <span>Digital Transformation & Healthcare IT</span></label>
+                    <label class="checkbox-label"><input type="checkbox" id="srv_quality"> <span>Quality Assurance & Accreditation (JCI)</span></label>
+                    <label class="checkbox-label"><input type="checkbox" id="srv_recruit"> <span>Doctor Recruitment & Credentialing</span></label>
+                    <label class="checkbox-label"><input type="checkbox" id="srv_px"> <span>Patient Experience (PX) Journey Mapping</span></label>
+
+                    <!-- The 10 New Advanced Services -->
+                    <label class="checkbox-label"><input type="checkbox" id="srv_rcm"> <span>Revenue Cycle Management (RCM) & Billing</span></label>
+                    <label class="checkbox-label"><input type="checkbox" id="srv_marketing"> <span>Healthcare Marketing & Branding</span></label>
+                    <label class="checkbox-label"><input type="checkbox" id="srv_gov"> <span>Clinical Governance & Risk Management</span></label>
+                    <label class="checkbox-label"><input type="checkbox" id="srv_pricing"> <span>Pricing Strategy & Clinical Packaging</span></label>
+                    <label class="checkbox-label"><input type="checkbox" id="srv_supply"> <span>Supply Chain & Procurement Optimization</span></label>
+                    <label class="checkbox-label"><input type="checkbox" id="srv_telemed"> <span>Telemedicine & Virtual Care Integration</span></label>
+                    <label class="checkbox-label"><input type="checkbox" id="srv_expansion"> <span>Expansion, Mergers & Acquisitions</span></label>
+                    <label class="checkbox-label"><input type="checkbox" id="srv_data"> <span>Data Analytics & Business Intelligence</span></label>
+                    <label class="checkbox-label"><input type="checkbox" id="srv_change"> <span>Organizational Change & Executive Coaching</span></label>
+                    <label class="checkbox-label"><input type="checkbox" id="srv_facility"> <span>Facility Planning & Commissioning</span></label>
                 </div>
             </div>
 
             <div class="section">
-                <div class="section-title">4. Commercials</div>
+                <div class="section-title">4. Commercials & Payment Schedule</div>
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="duration">Duration</label>
+                        <label>Duration</label>
                         <input type="text" id="duration" value="6 Months">
                     </div>
                     <div class="form-group">
-                        <label for="fee">Total Fee</label>
-                        <input type="text" id="fee" value="50,000 AED">
+                        <label>Total Fee</label>
+                        <input type="text" id="fee" value="70,000 AED">
                     </div>
+                </div>
+                <div class="form-group mt-2">
+                    <label>Payment Schedule Details</label>
+                    <textarea id="paymentSchedule" class="input-area">50% Advance Payment upon signing.
+50% Upon completion of milestone 1.</textarea>
                 </div>
             </div>
         </aside>
@@ -417,40 +298,88 @@
                     <span class="badge lang" id="badgeLang">ENGLISH</span>
                 </div>
                 <div class="actions">
-                    <button class="btn-secondary" id="copyBtn" onclick="copyDocument()">Copy Text</button>
-                    <button class="btn-primary" onclick="window.print()">Save PDF / Print</button>
+                    <button class="btn-word" onclick="exportToWord()">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="margin-right: 5px"><path d="M4.5 1a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V4.5L8.5 1h-4zM2 2a2 2 0 0 1 2-2h4.5L14 4.5V12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm5.5 0v2.5H10L7.5 2z"/></svg>
+                        Download Word
+                    </button>
+                    <button class="btn-pdf" onclick="window.print()">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="margin-right: 5px"><path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/><path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/></svg>
+                        Save PDF / Print
+                    </button>
                 </div>
             </div>
-            <!-- Changed to contenteditable div for perfect mobile printing -->
-            <div id="documentEditor" contenteditable="true" spellcheck="false"></div>
+            <div class="editor-wrapper">
+                <div id="documentEditor" contenteditable="true" spellcheck="false"></div>
+            </div>
         </main>
-
     </div>
 
     <script>
-        // --- 1. System Logic Dictionary ---
+        // --- 1. System Logic & Dictionaries (20 Services) ---
         const scopeDictionary = {
             English: {
-                srv_consult: "Strategic Healthcare Consultations & Facility Needs Assessment.",
-                srv_train: "Comprehensive Staff, Clinical, and Executive Leadership Training.",
-                srv_restruct: "Operational Restructuring to eliminate bottlenecks and optimize workflows.",
-                srv_revenue: "Design and implementation of Advanced Revenue Growth Strategies.",
-                srv_patient: "Tactical marketing and operational initiatives to Increase Patient Volume.",
-                srv_profit: "Financial Auditing, Cost Control, and Profit Margin Optimization."
+                srv_consult: "Strategic Healthcare Consultations & Comprehensive Facility Needs Assessment.",
+                srv_train: "Advanced Staff, Clinical, and Executive Leadership Training & Capacity Building.",
+                srv_restruct: "End-to-end Operational Restructuring to eliminate bottlenecks and optimize workflows.",
+                srv_revenue: "Design, deployment, and tracking of Advanced Revenue Growth Strategies.",
+                srv_patient: "Tactical marketing, outreach, and operational initiatives to systematically Increase Patient Volume.",
+                srv_profit: "Financial Auditing, Cost Control measures, and Profit Margin Optimization.",
+                srv_digital: "Digital Transformation, HIS/EMR System Optimization, and Healthcare IT Integration.",
+                srv_quality: "Quality Assurance Implementation and Readiness for Accreditations (e.g., JCI, CBAHI, ISO).",
+                srv_recruit: "Strategic Doctor Recruitment, Talent Acquisition, and Credentialing support.",
+                srv_px: "Patient Experience (PX) Journey Mapping to maximize retention and satisfaction scores.",
+                srv_rcm: "Revenue Cycle Management (RCM), Billing Optimization, and claims rejection reduction.",
+                srv_marketing: "Healthcare Marketing, Branding Strategy, and targeted patient acquisition campaigns.",
+                srv_gov: "Clinical Governance, Medical Risk Management, and patient safety protocols implementation.",
+                srv_pricing: "Pricing Strategy, Competitive Analysis, and Clinical Packaging design.",
+                srv_supply: "Supply Chain, Medical Procurement Optimization, and inventory waste reduction.",
+                srv_telemed: "Telemedicine integration, Virtual Care operational setup, and digital health pathways.",
+                srv_expansion: "Strategic Expansion planning, Mergers & Acquisitions support, and feasibility studies.",
+                srv_data: "Healthcare Data Analytics, Business Intelligence (BI) dashboards, and performance tracking.",
+                srv_change: "Organizational Change Management and Executive Coaching for healthcare leaders.",
+                srv_facility: "Healthcare Facility Planning, equipment selection, and commissioning (Pre-opening phase)."
             },
             Arabic: {
                 srv_consult: "استشارات استراتيجية متقدمة في الرعاية الصحية وتقييم الاحتياجات الشامل للمنشأة.",
-                srv_train: "برامج تدريب وتطوير متكاملة للكوادر الطبية والقيادات التنفيذية.",
-                srv_restruct: "إعادة هيكلة العمليات التشغيلية للقضاء على المعوقات وتحسين كفاءة سير العمل.",
-                srv_revenue: "تصميم وتنفيذ استراتيجيات متطورة ومبتكرة لنمو الإيرادات.",
-                srv_patient: "مبادرات تشغيلية وتسويقية تكتيكية لزيادة حجم المرضى وتحسين الاحتفاظ بهم.",
-                srv_profit: "التدقيق المالي، والتحكم في التكاليف، وتحسين هوامش الربح."
+                srv_train: "برامج تدريب وتطوير متكاملة وبناء قدرات للكوادر الطبية والقيادات التنفيذية.",
+                srv_restruct: "إعادة هيكلة العمليات التشغيلية الشاملة للقضاء على المعوقات وتحسين كفاءة سير العمل.",
+                srv_revenue: "تصميم وتنفيذ ومتابعة استراتيجيات متطورة ومبتكرة لنمو الإيرادات بشكل مستدام.",
+                srv_patient: "مبادرات تشغيلية وتسويقية تكتيكية لزيادة حجم المراجعين وتحسين معدلات الاحتفاظ بهم.",
+                srv_profit: "التدقيق المالي الشامل، إجراءات التحكم في التكاليف، وتحسين هوامش الربح التشغيلية.",
+                srv_digital: "التحول الرقمي، تحسين أنظمة المعلومات الصحية (HIS/EMR)، وتكامل تكنولوجيا الرعاية الصحية.",
+                srv_quality: "تطبيق معايير ضمان الجودة والتحضير للاعتمادات المحلية والدولية (مثل JCI، CBAHI، ISO).",
+                srv_recruit: "الاستقطاب الاستراتيجي للأطباء والكفاءات، ودعم عمليات تقييم المؤهلات والترخيص.",
+                srv_px: "هندسة رحلة وتجربة المريض (PX) لتعظيم مستويات الرضا والولاء للمنشأة.",
+                srv_rcm: "إدارة دورة الإيرادات (RCM)، تحسين أنظمة الفوترة، وتقليل المرفوضات من التأمين.",
+                srv_marketing: "استراتيجيات التسويق الطبي، بناء العلامة التجارية، وحملات استقطاب المرضى المستهدفة.",
+                srv_gov: "تطبيق الحوكمة السريرية، إدارة المخاطر الطبية، وسياسات وممارسات سلامة المرضى.",
+                srv_pricing: "استراتيجيات التسعير، تحليل المنافسين، وتصميم الباقات العلاجية الجذابة والتنافسية.",
+                srv_supply: "إدارة سلسلة الإمداد، تحسين مشتريات المعدات والمستهلكات الطبية، وتقليل الهدر.",
+                srv_telemed: "تأسيس ودمج خدمات الطب الاتصالي (التطبيب عن بعد) وتهيئة مسارات الرعاية الافتراضية.",
+                srv_expansion: "استراتيجيات التوسع، الاندماج والاستحواذ، ودراسات الجدوى للأسواق والفروع الجديدة.",
+                srv_data: "تحليل البيانات الصحية، ذكاء الأعمال (BI)، وتصميم لوحات تحكم لمتابعة الأداء.",
+                srv_change: "إدارة التغيير المؤسسي، وتوجيه القيادات التنفيذية والطبية بسلاسة خلال فترات التحول.",
+                srv_facility: "تخطيط وتجهيز المنشآت الطبية الجديدة، واختيار المعدات، وإدارة مرحلة ما قبل التشغيل."
             }
         };
 
-        // --- 2. Dynamic Generator Engine ---
+        // Standard Inline CSS for Rich Text (Ensures it looks good in Web, PDF, and MS Word)
+        const styles = {
+            doc: "font-family: 'Georgia', 'Times New Roman', serif; color: #111; line-height: 1.8; font-size: 11pt;",
+            headerBlock: "border-bottom: 2px solid #1e3a8a; padding-bottom: 15px; margin-bottom: 25px;",
+            h1: "color: #1e3a8a; font-size: 18pt; font-weight: bold; margin: 0 0 10px 0; text-transform: uppercase;",
+            h2: "color: #1e3a8a; font-size: 13pt; font-weight: bold; margin: 25px 0 10px 0; border-bottom: 1px solid #e2e8f0; padding-bottom: 5px;",
+            p: "margin: 0 0 15px 0; text-align: justify;",
+            ul: "margin: 0 0 15px 20px; padding: 0;",
+            ulRtl: "margin: 0 20px 15px 0; padding: 0;",
+            li: "margin-bottom: 8px;",
+            bold: "font-weight: bold;",
+            signatures: "width: 100%; margin-top: 50px; border-collapse: collapse;",
+            sigTd: "width: 50%; padding-top: 10px; padding-bottom: 30px;"
+        };
+
+        // --- 2. Dynamic Document Generator ---
         function generateDocument() {
-            // Get Input Values
             const docType = document.getElementById('docType').value;
             const lang = document.getElementById('docLang').value;
             const clientName = document.getElementById('clientName').value || "[Client Name]";
@@ -458,268 +387,286 @@
             const facilityType = document.getElementById('facilityType').value;
             const duration = document.getElementById('duration').value || "[Duration]";
             const fee = document.getElementById('fee').value || "[Fee Amount]";
+            let paymentSchedule = document.getElementById('paymentSchedule').value || "To be agreed upon.";
 
-            // Update UI Badges
+            paymentSchedule = paymentSchedule.replace(/\n/g, '<br>');
+
             document.getElementById('badgeType').innerText = docType.toUpperCase();
             document.getElementById('badgeLang').innerText = lang.toUpperCase();
 
-            // Set RTL formatting for Arabic
             const editor = document.getElementById('documentEditor');
-            if (lang === 'Arabic') {
-                editor.classList.add('rtl');
-            } else {
-                editor.classList.remove('rtl');
-            }
-
-            // Generate Scope of Work dynamically
-            const scopeKeys = ['srv_consult', 'srv_train', 'srv_restruct', 'srv_revenue', 'srv_patient', 'srv_profit'];
-            let scopeList = "";
-            let counter = 1;
-
+            const isRTL = lang === 'Arabic';
+            editor.dir = isRTL ? "rtl" : "ltr";
+            
+            // Build List of Selected Services
+            const scopeKeys = Object.keys(scopeDictionary.English); // Grabs all 20 keys automatically
+            let scopeItems = "";
+            let count = 0;
             scopeKeys.forEach(key => {
-                const checkbox = document.getElementById(key);
-                if (checkbox && checkbox.checked) {
-                    scopeList += `${counter}. ${scopeDictionary[lang][key]}\n`;
-                    counter++;
+                if (document.getElementById(key) && document.getElementById(key).checked) {
+                    scopeItems += `<li style="${styles.li}">${scopeDictionary[lang][key]}</li>`;
+                    count++;
                 }
             });
 
-            if (scopeList === "") {
-                scopeList = lang === 'English' 
-                    ? "1. Standard Healthcare Management Consulting Services." 
-                    : "1. خدمات استشارات الإدارة الصحية القياسية.";
+            if (count === 0) {
+                scopeItems = `<li style="${styles.li}">${lang === 'English' ? "Standard Healthcare Management Consulting Services." : "خدمات استشارات الإدارة الصحية القياسية."}</li>`;
             }
 
-            // Get Current Date
-            const dateObj = new Date();
-            const dateStr = dateObj.toLocaleDateString(lang === 'English' ? 'en-US' : 'ar-EG', { year: 'numeric', month: 'long', day: 'numeric' });
-
-            // Document Generation Logic
-            let finalDocument = "";
+            const dateStr = new Date().toLocaleDateString(lang === 'English' ? 'en-US' : 'ar-EG', { year: 'numeric', month: 'long', day: 'numeric' });
+            
+            let html = `<div style="${styles.doc} direction: ${isRTL ? 'rtl' : 'ltr'}; text-align: ${isRTL ? 'right' : 'left'};">`;
 
             if (lang === 'English') {
                 if (docType === 'Proposal') {
-                    finalDocument = `PROPOSAL FOR HEALTHCARE FACILITY OPTIMIZATION & GROWTH
-======================================================
-Date: ${dateStr}
-Prepared for: ${clientName}
-Facility: ${facilityName} (${facilityType})
+                    html += `
+                        <div style="${styles.headerBlock}">
+                            <h1 style="${styles.h1}">Proposal for Healthcare Facility Optimization</h1>
+                            <p style="margin:0;"><strong>Date:</strong> ${dateStr}<br>
+                            <strong>Prepared for:</strong> ${clientName}<br>
+                            <strong>Facility:</strong> ${facilityName} (${facilityType})</p>
+                        </div>
 
-1. EXECUTIVE SUMMARY
---------------------
-This proposal outlines a strategic partnership aimed at elevating the operational, clinical, and financial performance of ${facilityName}. Drawing upon extensive expertise in healthcare restructuring, training, and strategic development, this engagement focuses on driving measurable revenue growth, optimizing patient flow, and ensuring operational excellence.
+                        <h2 style="${styles.h2}">1. Executive Summary</h2>
+                        <p style="${styles.p}">This proposal outlines a strategic partnership aimed at comprehensively elevating the operational, clinical, and financial performance of <strong>${facilityName}</strong>. Drawing upon extensive expertise in healthcare restructuring, training, and strategic development, this engagement focuses on driving measurable revenue growth, optimizing patient flow, and ensuring operational excellence.</p>
 
-2. STRATEGIC OBJECTIVES
------------------------
-* To establish ${facilityName} as a market leader in quality of care and profitability.
-* To implement robust operational frameworks that support sustainable scalability.
-* To enhance staff performance, retention, and patient satisfaction through targeted training.
+                        <h2 style="${styles.h2}">2. Strategic Objectives & Value Proposition</h2>
+                        <ul style="${styles.ul}">
+                            <li style="${styles.li}">Establish the facility as a market leader in quality of care and profitability.</li>
+                            <li style="${styles.li}">Implement robust, agile operational frameworks that support sustainable scalability.</li>
+                            <li style="${styles.li}">Enhance staff performance, retention, and patient satisfaction metrics.</li>
+                        </ul>
 
-3. PROPOSED SCOPE OF WORK
--------------------------
-Based on our preliminary discussions, the following strategic initiatives will be implemented:
+                        <h2 style="${styles.h2}">3. Comprehensive Scope of Work</h2>
+                        <p style="${styles.p}">Based on our preliminary assessment, we propose implementing the following strategic initiatives:</p>
+                        <ul style="${styles.ul}">
+                            ${scopeItems}
+                        </ul>
 
-${scopeList}
-4. METHODOLOGY & APPROACH
--------------------------
-Our approach is highly collaborative and data-driven. We initiate the engagement with a comprehensive diagnostic phase to identify leakages and opportunities. This is followed by the co-creation of strategic blueprints, culminating in hands-on implementation support and rigorous performance tracking to ensure KPI attainment.
+                        <h2 style="${styles.h2}">4. Key Deliverables & Methodology</h2>
+                        <p style="${styles.p}">Our methodology is data-driven and highly collaborative. We initiate with a <strong>Comprehensive Diagnostic Phase</strong> to identify operational leakages and growth opportunities. Following this, we deliver strategic blueprints, actionable recommendations, and hands-on implementation support. Progress will be tracked via strict Key Performance Indicators (KPIs) to ensure absolute attainment of goals.</p>
 
-5. INVESTMENT & TIMELINE
-------------------------
-* Estimated Project Duration: ${duration}
-* Total Professional Investment: ${fee}
+                        <h2 style="${styles.h2}">5. Commercials & Payment Schedule</h2>
+                        <p style="${styles.p}"><strong>Estimated Project Duration:</strong> ${duration}<br>
+                        <strong>Total Professional Investment:</strong> ${fee}</p>
+                        <p style="${styles.p}"><strong>Payment Terms & Schedule:</strong><br>${paymentSchedule}</p>
 
-6. NEXT STEPS
--------------
-Upon your review and approval of this strategic proposal, a formal service agreement will be drafted to commence the engagement officially. We look forward to partnering with ${facilityName} to achieve unprecedented growth and operational success.
-
-Respectfully submitted,
-
-_______________________
-[Your Name / Title]
-Healthcare Strategic Consultant`;
+                        <h2 style="${styles.h2}">6. Next Steps & Sign-off</h2>
+                        <p style="${styles.p}">Upon your review and approval of this strategic proposal, a formal service agreement will be drafted to commence the engagement officially. We look forward to a successful partnership with <strong>${facilityName}</strong>.</p>
+                        
+                        <p style="${styles.p} margin-top: 40px;">
+                            Respectfully submitted,<br><br>
+                            _______________________<br>
+                            <strong>[Your Name / Title]</strong><br>
+                            Healthcare Strategic Consultant
+                        </p>
+                    `;
                 } else if (docType === 'Agreement') {
-                    finalDocument = `CONSULTING SERVICES AGREEMENT
-=============================
+                    html += `
+                        <div style="${styles.headerBlock}">
+                            <h1 style="${styles.h1}">Consulting Services Agreement</h1>
+                            <p style="margin:0;"><strong>Effective Date:</strong> ${dateStr}</p>
+                        </div>
 
-This Consulting Services Agreement ("Agreement") is made and entered into as of ${dateStr}.
+                        <p style="${styles.p}">This Consulting Services Agreement (the "Agreement") is made and entered into as of the Effective Date by and between:</p>
+                        
+                        <p style="${styles.p}">
+                            <strong>Party A (The Consultant):</strong> [Your Name / Company Name]<br>
+                            <strong>Party B (The Client):</strong> ${clientName}, authorized representative of ${facilityName}, a ${facilityType}.
+                        </p>
 
-BETWEEN:
-Consultant: [Your Name / Company Name] (the "Consultant")
-Client: ${clientName}, authorized representative of ${facilityName}, a ${facilityType} (the "Client")
+                        <h2 style="${styles.h2}">1. Scope of Services</h2>
+                        <p style="${styles.p}">The Consultant agrees to provide the following specialized healthcare management and development services to the Client:</p>
+                        <ul style="${styles.ul}">
+                            ${scopeItems}
+                        </ul>
 
-1. SCOPE OF SERVICES
---------------------
-The Consultant agrees to provide the following specialized healthcare management and development services to the Client:
+                        <h2 style="${styles.h2}">2. Term & Termination</h2>
+                        <p style="${styles.p}">This Agreement shall commence on the Effective Date and shall continue in full force for a period of <strong>${duration}</strong>. Either party may terminate this Agreement prior to expiration by providing a thirty (30) days written notice to the other party.</p>
 
-${scopeList}
-2. TERM OF AGREEMENT
---------------------
-This Agreement shall commence on the date of execution and shall continue in full force and effect for a period of ${duration}, unless terminated earlier by either party upon thirty (30) days written notice.
+                        <h2 style="${styles.h2}">3. Compensation & Payment Schedule</h2>
+                        <p style="${styles.p}">In consideration for the services provided, the Client agrees to pay the Consultant a total professional fee of <strong>${fee}</strong>. Payments shall be made strictly according to the following schedule:</p>
+                        <p style="${styles.p}; background: #f8fafc; padding: 10px; border-left: 3px solid #1e3a8a;">
+                            ${paymentSchedule}
+                        </p>
 
-3. COMPENSATION
----------------
-In consideration for the services provided, the Client agrees to pay the Consultant a total professional fee of ${fee}. Payment schedules, invoicing terms, and milestone deliverables will be detailed in an attached addendum.
+                        <h2 style="${styles.h2}">4. Independent Contractor Status</h2>
+                        <p style="${styles.p}">The Consultant shall perform the services as an independent contractor. Nothing in this Agreement shall be construed to create a partnership, joint venture, agency, or employer-employee relationship.</p>
 
-4. INDEPENDENT CONTRACTOR
--------------------------
-The Consultant shall perform the services as an independent contractor. Nothing in this Agreement shall be construed to create a partnership, joint venture, agency, or employer-employee relationship between the parties.
+                        <h2 style="${styles.h2}">5. Confidentiality & Data Protection</h2>
+                        <p style="${styles.p}">Both parties agree to hold all proprietary, medical, and sensitive operational/financial data in strict confidence. Neither party shall disclose such information to any third party without prior written consent, fully compliant with local healthcare data protection regulations.</p>
 
-5. CONFIDENTIALITY
-------------------
-Both parties agree to hold all proprietary, medical, and sensitive operational/financial data in strict confidence. Neither party shall disclose such information to any third party without prior written consent, compliant with local healthcare data protection regulations.
+                        <h2 style="${styles.h2}">6. Governing Law</h2>
+                        <p style="${styles.p}">This Agreement shall be governed by and construed in accordance with the applicable local laws and regulations governing the jurisdiction in which the facility operates.</p>
 
-6. GOVERNING LAW
-----------------
-This Agreement shall be governed by and construed in accordance with the applicable local laws and regulations governing the jurisdiction in which ${facilityName} operates.
+                        <p style="${styles.p} margin-top:30px;">IN WITNESS WHEREOF, the parties hereto have executed this Agreement as of the date first above written.</p>
 
-IN WITNESS WHEREOF, the parties hereto have executed this Agreement as of the date first above written.
-
-CONSULTANT:                               CLIENT:
-_______________________                   _______________________
-Signature                                 Signature
-Name: [Your Name]                         Name: ${clientName}
-Date:                                     Date:`;
+                        <table style="${styles.signatures}">
+                            <tr>
+                                <td style="${styles.sigTd}">
+                                    <strong>CONSULTANT</strong><br><br><br>
+                                    _______________________<br>
+                                    Signature<br><br>
+                                    Name: [Your Name]<br>
+                                    Date:
+                                </td>
+                                <td style="${styles.sigTd}">
+                                    <strong>CLIENT</strong><br><br><br>
+                                    _______________________<br>
+                                    Signature<br><br>
+                                    Name: ${clientName}<br>
+                                    Date:
+                                </td>
+                            </tr>
+                        </table>
+                    `;
                 }
             } else if (lang === 'Arabic') {
                 const facTypeAr = facilityType === 'Clinic' ? 'عيادة / مجمع طبي' : 'مستشفى / مركز طبي';
                 
                 if (docType === 'Proposal') {
-                    finalDocument = `عرض تقديم خدمات استشارية لتطوير ونمو المنشأة الصحية
-===================================================
-التاريخ: ${dateStr}
-مقدم إلى: ${clientName}
-المنشأة: ${facilityName} (${facTypeAr})
+                    html += `
+                        <div style="${styles.headerBlock}">
+                            <h1 style="${styles.h1}">عرض لتقديم استشارات تطوير ونمو المنشأة الصحية</h1>
+                            <p style="margin:0;"><strong>التاريخ:</strong> ${dateStr}<br>
+                            <strong>مقدم إلى:</strong> ${clientName}<br>
+                            <strong>المنشأة:</strong> ${facilityName} (${facTypeAr})</p>
+                        </div>
 
-1. الملخص التنفيذي
-------------------
-يوضح هذا العرض إطار شراكة استراتيجية تهدف إلى الارتقاء الجذري بالأداء التشغيلي والسريري والمالي لـ "${facilityName}". استناداً إلى خبراتنا الواسعة في إدارة الرعاية الصحية، وإعادة الهيكلة، والتطوير الاستراتيجي، يركز هذا التعاون على تحقيق نمو ملموس ومستدام في الإيرادات، وتحسين تدفق المرضى، وضمان التميز التشغيلي الشامل.
+                        <h2 style="${styles.h2}">1. الملخص التنفيذي</h2>
+                        <p style="${styles.p}">يوضح هذا العرض إطار شراكة استراتيجية تهدف إلى الارتقاء الجذري والشامل بالأداء التشغيلي والسريري والمالي لـ <strong>${facilityName}</strong>. استناداً إلى خبراتنا الواسعة في إدارة الرعاية الصحية، وإعادة الهيكلة، والتطوير الاستراتيجي، يركز هذا التعاون على تحقيق نمو ملموس ومستدام في الإيرادات، وتحسين تدفق المراجعين، وضمان التميز التشغيلي الشامل.</p>
 
-2. الأهداف الاستراتيجية
------------------------
-* ترسيخ مكانة ${facilityName} كمنشأة رائدة في السوق من حيث جودة الرعاية، تجربة المريض، والربحية.
-* تنفيذ أطر تشغيلية قوية تقضي على معوقات العمل وتدعم التوسع والنمو المستدام.
-* تعزيز أداء الكوادر الطبية والإدارية والاحتفاظ بهم من خلال برامج تدريب وتطوير موجهة وفعالة.
+                        <h2 style="${styles.h2}">2. الأهداف الاستراتيجية والقيمة المضافة</h2>
+                        <ul style="${styles.ulRtl}">
+                            <li style="${styles.li}">ترسيخ مكانة المنشأة كعلامة رائدة في السوق من حيث جودة الرعاية الصحية والربحية.</li>
+                            <li style="${styles.li}">تنفيذ أطر تشغيلية مرنة وقوية تقضي على معوقات العمل وتدعم التوسع المستدام.</li>
+                            <li style="${styles.li}">تعزيز أداء الكوادر الطبية والإدارية ورفع مستويات رضا المرضى والاحتفاظ بهم.</li>
+                        </ul>
 
-3. نطاق العمل (الخدمات المقترحة)
---------------------------------
-بناءً على التقييمات والمناقشات الأولية، سيتم تنفيذ المبادرات الاستراتيجية التالية:
+                        <h2 style="${styles.h2}">3. النطاق الشامل للخدمات المقترحة</h2>
+                        <p style="${styles.p}">بناءً على التقييمات والمناقشات الأولية، نقترح تنفيذ المبادرات الاستراتيجية التالية:</p>
+                        <ul style="${styles.ulRtl}">
+                            ${scopeItems}
+                        </ul>
 
-${scopeList}
-4. المنهجية وأسلوب العمل
-------------------------
-نعتمد نهجاً تشاركياً مبنياً على البيانات الدقيقة. نبدأ المشروع بمرحلة تشخيص شاملة لتحديد التسربات المادية والفرص المتاحة، تليها صياغة الخطط الاستراتيجية المشتركة، وصولاً إلى الدعم الميداني المباشر أثناء التنفيذ والمتابعة الدقيقة لمؤشرات الأداء الرئيسية (KPIs) لضمان تحقيق الأهداف المرجوة.
+                        <h2 style="${styles.h2}">4. المخرجات الرئيسية والمنهجية</h2>
+                        <p style="${styles.p}">نعتمد نهجاً تشاركياً مبنياً على البيانات الدقيقة. نبدأ المشروع <strong>بمرحلة تشخيص شاملة</strong> لتحديد التسربات المادية والفرص المتاحة، تليها صياغة الخطط الاستراتيجية، وصولاً إلى الدعم الميداني المباشر أثناء التنفيذ. سيتم قياس النجاح والمتابعة الدقيقة عبر مؤشرات أداء رئيسية (KPIs) لضمان تحقيق كافة الأهداف المرجوة.</p>
 
-5. الاستثمار المالي والجدول الزمني
-----------------------------------
-* المدة الزمنية المقدرة للمشروع: ${duration}
-* إجمالي أتعاب الاستشارات المهنية: ${fee}
+                        <h2 style="${styles.h2}">5. الاستثمار المالي وجدولة الدفعات</h2>
+                        <p style="${styles.p}"><strong>المدة الزمنية المقدرة للمشروع:</strong> ${duration}<br>
+                        <strong>إجمالي أتعاب الاستشارات المهنية:</strong> ${fee}</p>
+                        <p style="${styles.p}"><strong>شروط وجدولة الدفعات:</strong><br>${paymentSchedule}</p>
 
-6. الخطوات القادمة
-------------------
-بناءً على مراجعتكم وموافقتكم الكريمة على هذا العرض الاستراتيجي، سيتم صياغة اتفاقية خدمات رسمية للبدء في تنفيذ المشروع بشكل رسمي. نتطلع إلى الشراكة مع ${facilityName} لتحقيق نمو غير مسبوق ونجاح تشغيلي استثنائي.
-
-مع خالص التحيات،
-
-_______________________
-[اسمك / المسمى الوظيفي]
-مستشار استراتيجي للرعاية الصحية`;
+                        <h2 style="${styles.h2}">6. الخطوات القادمة</h2>
+                        <p style="${styles.p}">بناءً على مراجعتكم وموافقتكم الكريمة على هذا العرض الاستراتيجي، سيتم صياغة اتفاقية خدمات رسمية للبدء في تنفيذ المشروع بشكل رسمي. نتطلع إلى الشراكة المثمرة مع <strong>${facilityName}</strong> لتحقيق نجاح تشغيلي استثنائي.</p>
+                        
+                        <p style="${styles.p} margin-top: 40px;">
+                            مع خالص التحيات،<br><br>
+                            _______________________<br>
+                            <strong>[اسمك / المسمى الوظيفي]</strong><br>
+                            مستشار استراتيجي للرعاية الصحية
+                        </p>
+                    `;
                 } else if (docType === 'Agreement') {
-                    finalDocument = `اتفاقية تقديم خدمات استشارية مهنية
-==================================
+                    html += `
+                        <div style="${styles.headerBlock}">
+                            <h1 style="${styles.h1}">اتفاقية تقديم خدمات استشارية مهنية</h1>
+                            <p style="margin:0;"><strong>تاريخ سريان الاتفاقية:</strong> ${dateStr}</p>
+                        </div>
 
-أُبرمت هذه الاتفاقية ("الاتفاقية") في تاريخ ${dateStr}.
+                        <p style="${styles.p}">أُبرمت هذه الاتفاقية ("الاتفاقية") في التاريخ المذكور أعلاه، بين كل من:</p>
+                        
+                        <p style="${styles.p}">
+                            <strong>الطرف الأول (المستشار):</strong> [اسمك / اسم شركتك]<br>
+                            <strong>الطرف الثاني (العميل):</strong> ${clientName}، الممثل المفوض عن ${facilityName}، وهي/وهو (${facTypeAr}).
+                        </p>
 
-بين كل من:
-الطرف الأول (المستشار): [اسمك / اسم شركتك] (يُشار إليه فيما بعد بـ "المستشار")
-الطرف الثاني (العميل): ${clientName}، ممثلاً عن ${facilityName}، وهو/وهي (${facTypeAr}) (يُشار إليه فيما بعد بـ "العميل")
+                        <h2 style="${styles.h2}">1. نطاق الخدمات</h2>
+                        <p style="${styles.p}">يوافق المستشار على تقديم الخدمات المتخصصة التالية في مجال الإدارة الصحية وتطوير الأعمال للعميل:</p>
+                        <ul style="${styles.ulRtl}">
+                            ${scopeItems}
+                        </ul>
 
-1. نطاق الخدمات
----------------
-يوافق المستشار على تقديم الخدمات المتخصصة التالية في مجال الإدارة الصحية وتطوير الأعمال للعميل:
+                        <h2 style="${styles.h2}">2. مدة الاتفاقية وشروط الإنهاء</h2>
+                        <p style="${styles.p}">تبدأ هذه الاتفاقية من تاريخ توقيعها وتستمر سارية المفعول لمدة <strong>${duration}</strong>. يجوز لأي من الطرفين إنهاء هذه الاتفاقية قبل انتهاء مدتها بموجب تقديم إشعار خطي يسبق الإنهاء بثلاثين (30) يوماً للطرف الآخر.</p>
 
-${scopeList}
-2. مدة الاتفاقية
-----------------
-تبدأ هذه الاتفاقية من تاريخ توقيعها وتستمر سارية المفعول لمدة ${duration}، ما لم يتم إنهاؤها قبل ذلك من قبل أي من الطرفين بموجب إشعار خطي يسبق الإنهاء بثلاثين (30) يوماً.
+                        <h2 style="${styles.h2}">3. الأتعاب وجدولة الدفع</h2>
+                        <p style="${styles.p}">مقابل الخدمات المهنية المقدمة، يوافق العميل على دفع أتعاب إجمالية للمستشار قدرها <strong>${fee}</strong>. يتم سداد الدفعات بدقة وفقاً للجدول الزمني والشروط التالية:</p>
+                        <p style="${styles.p}; background: #f8fafc; padding: 10px; border-right: 3px solid #1e3a8a;">
+                            ${paymentSchedule}
+                        </p>
 
-3. الأتعاب وطريقة الدفع
------------------------
-مقابل الخدمات المهنية المقدمة، يوافق العميل على دفع أتعاب إجمالية للمستشار قدرها ${fee}. سيتم تفصيل جداول الدفع، وشروط الفوترة، ومراحل تسليم العمل في ملحق منفصل مرفق بهذه الاتفاقية.
+                        <h2 style="${styles.h2}">4. العلاقة المستقلة (مستشار مستقل)</h2>
+                        <p style="${styles.p}">يقوم المستشار بتقديم الخدمات بصفته متعاقداً مستقلاً. لا يُفسر أي بند في هذه الاتفاقية بأي حال من الأحوال على أنه ينشئ شراكة، أو مشروعاً مشتركاً، أو وكالة، أو علاقة صاحب عمل بموظف بين الطرفين.</p>
 
-4. العلاقة بين الطرفين (مستشار مستقل)
--------------------------------------
-يقوم المستشار بتقديم الخدمات بصفته متعاقداً مستقلاً. لا يُفسر أي بند في هذه الاتفاقية بأي حال من الأحوال على أنه ينشئ شراكة أو مشروعاً مشتركاً أو وكالة أو علاقة صاحب عمل بموظف بين الطرفين.
+                        <h2 style="${styles.h2}">5. السرية وحماية البيانات</h2>
+                        <p style="${styles.p}">يوافق كلا الطرفين على الحفاظ على السرية التامة لجميع البيانات التشغيلية، والمالية، والطبية الحساسة. لا يجوز لأي من الطرفين الإفصاح عن هذه المعلومات لأي طرف ثالث دون موافقة خطية مسبقة، وبما يتوافق تماماً مع القوانين المحلية لحماية بيانات الرعاية الصحية.</p>
 
-5. السرية والحفاظ على المعلومات
--------------------------------
-يوافق كلا الطرفين على الحفاظ على السرية التامة لجميع البيانات التشغيلية والمالية والطبية الحساسة والمملوكة. لا يجوز لأي من الطرفين الإفصاح عن هذه المعلومات لأي طرف ثالث دون موافقة خطية مسبقة، وبما يتوافق مع القوانين المحلية لحماية بيانات الرعاية الصحية.
+                        <h2 style="${styles.h2}">6. القانون الحاكم</h2>
+                        <p style="${styles.p}">تخضع هذه الاتفاقية وتُفسر وفقاً للقوانين واللوائح المحلية المعمول بها في الولاية القضائية التي تمارس فيها منشأة العميل أعمالها.</p>
 
-6. القانون الحاكم
------------------
-تخضع هذه الاتفاقية وتُفسر وفقاً للقوانين واللوائح المحلية المعمول بها في الولاية القضائية التي تمارس فيها منشأة ${facilityName} أعمالها.
+                        <p style="${styles.p} margin-top:30px;">وإثباتاً لما تقدم، قام الطرفان بتوقيع هذه الاتفاقية في التاريخ المذكور أعلاه.</p>
 
-وإثباتاً لما تقدم، قام الطرفان بتوقيع هذه الاتفاقية في التاريخ المذكور أعلاه.
-
-الطرف الأول (المستشار):                     الطرف الثاني (العميل):
-_______________________                   _______________________
-التوقيع                                     التوقيع
-الاسم: [اسمك]                              الاسم: ${clientName}
-التاريخ:                                    التاريخ:`;
+                        <table style="${styles.signatures}">
+                            <tr>
+                                <td style="${styles.sigTd}">
+                                    <strong>الطرف الأول (المستشار)</strong><br><br><br>
+                                    _______________________<br>
+                                    التوقيع<br><br>
+                                    الاسم: [اسمك]<br>
+                                    التاريخ:
+                                </td>
+                                <td style="${styles.sigTd}">
+                                    <strong>الطرف الثاني (العميل)</strong><br><br><br>
+                                    _______________________<br>
+                                    التوقيع<br><br>
+                                    الاسم: ${clientName}<br>
+                                    التاريخ:
+                                </td>
+                            </tr>
+                        </table>
+                    `;
                 }
             }
 
-            // Set innerText directly (works beautifully with contenteditable and white-space: pre-wrap)
-            editor.innerText = finalDocument;
+            html += `</div>`;
+            editor.innerHTML = html;
         }
 
-        // --- 3. Enhanced Utility Functions ---
-        function copyDocument() {
+        // --- 3. Export to Microsoft Word (No External Libraries) ---
+        function exportToWord() {
             const editor = document.getElementById('documentEditor');
-            const textToCopy = editor.innerText;
+            const docType = document.getElementById('docType').value;
+            const clientName = document.getElementById('clientName').value.replace(/[^a-zA-Z0-9\u0600-\u06FF ]/g, "") || "Client"; // Allowed Arabic & English chars
             
-            const btn = document.getElementById('copyBtn');
-            const originalText = btn.innerText;
-
-            const showSuccess = () => {
-                btn.innerText = "Copied ✓";
-                btn.style.backgroundColor = "var(--accent)";
-                btn.style.color = "white";
-                btn.style.borderColor = "var(--accent)";
-                setTimeout(() => {
-                    btn.innerText = originalText;
-                    btn.style.backgroundColor = "white";
-                    btn.style.color = "var(--text-dark)";
-                    btn.style.borderColor = "var(--border-color)";
-                }, 2000);
-            };
-
-            // Modern clipboard API with Fallback
-            if (navigator.clipboard && window.isSecureContext) {
-                navigator.clipboard.writeText(textToCopy).then(showSuccess);
-            } else {
-                const range = document.createRange();
-                range.selectNodeContents(editor);
-                const selection = window.getSelection();
-                selection.removeAllRanges();
-                selection.addRange(range);
-                document.execCommand('copy');
-                selection.removeAllRanges();
-                showSuccess();
-            }
+            const header = `<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+            <head><meta charset='utf-8'><title>Export HTML to Word</title></head><body>`;
+            const footer = "</body></html>";
+            
+            let sourceHTML = header + editor.innerHTML + footer;
+            
+            const blob = new Blob(['\ufeff', sourceHTML], {
+                type: 'application/msword'
+            });
+            
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `${docType}_${clientName}.doc`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
 
-        // --- 4. Event Listeners Initialization ---
+        // --- 4. Event Listeners ---
         document.addEventListener('DOMContentLoaded', () => {
-            const inputs = document.querySelectorAll('input, select');
+            const inputs = document.querySelectorAll('input, select, textarea');
             inputs.forEach(input => {
                 input.addEventListener('input', generateDocument);
                 input.addEventListener('change', generateDocument);
             });
-
             generateDocument();
         });
     </script>
 </body>
 </html>
-
